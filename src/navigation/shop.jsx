@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { theme } from '../constants/theme';
+import { THEME } from '../constants/theme';
 import { Categories, ProductDetail, Products } from '../screens/index';
 
 const Stack = createNativeStackNavigator();
@@ -14,38 +14,38 @@ const ShopNavigator = () => {
         options={{
           headerShown: false,
           title: 'Categories',
-          statusBarColor: theme.colors.primary,
+          statusBarColor: THEME.colors.primary,
         }}
       />
       <Stack.Screen
         name="Products"
         component={Products}
-        options={{
-          title: 'Products',
-          statusBarColor: theme.colors.primary,
-          headerTintColor: theme.colors.title,
+        options={({ route }) => ({
+          title: route.params.title,
+          statusBarColor: THEME.colors.primary,
+          headerTintColor: THEME.colors.title,
           headerStyle: {
-            backgroundColor: theme.colors.background,
+            backgroundColor: THEME.colors.background,
           },
           headerTitleStyle: {
             fontFamily: 'Bitter-SemiBold',
           },
-        }}
+        })}
       />
       <Stack.Screen
         name="ProductDetail"
         component={ProductDetail}
-        options={{
-          title: 'Product Detail',
-          statusBarColor: theme.colors.primary,
-          headerTintColor: theme.colors.title,
+        options={({ route }) => ({
+          title: route.params.title,
+          statusBarColor: THEME.colors.primary,
+          headerTintColor: THEME.colors.title,
           headerStyle: {
-            backgroundColor: theme.colors.background,
+            backgroundColor: THEME.colors.background,
           },
           headerTitleStyle: {
             fontFamily: 'Bitter-SemiBold',
           },
-        }}
+        })}
       />
     </Stack.Navigator>
   );
