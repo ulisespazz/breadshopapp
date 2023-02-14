@@ -18,5 +18,6 @@ export const styles = StyleSheet.create({
   },
   contentContainerList: {
     paddingBottom: 30,
+    paddingTop: 30,
   },
 });
