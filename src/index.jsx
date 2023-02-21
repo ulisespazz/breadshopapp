@@ -1,10 +1,11 @@
 import { useFonts } from 'expo-font';
 import { View, ActivityIndicator } from 'react-native';
+import { Provider } from 'react-redux';
 
 import { THEME } from './constants/theme';
 import AppNavigator from './navigation';
+import store from './store';
 import { styles } from './styles';
-
 const App = () => {
   const [loaded] = useFonts({
     'Bitter-Light': require('../assets/fonts/Bitter-Light.ttf'),
@@ -19,7 +20,11 @@ const App = () => {
       </View>
     );
   }
-  return <AppNavigator />;
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
 };
 
 export default App;
