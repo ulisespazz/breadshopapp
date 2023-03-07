@@ -1,19 +1,26 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View, Text, Button } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { styles } from './styles';
-import { PRODUCTS } from '../../constants/data';
+import { THEME } from '../../constants/theme';
+import { addToCart } from '../../store/actions/index';
 
 const PrductDetail = ({ navigation }) => {
+  const dispatch = useDispatch();
   const product = useSelector((state) => state.products.selected);
+
+  const onAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.title}>{product.description}</Text>
-      <Text style={styles.title}>{product.weight}</Text>
-      <Text style={styles.title}>${product.price}</Text>
+      <Text style={styles.title}>{product?.title}</Text>
+      <Text style={styles.title}>{product?.description}</Text>
+      <Text style={styles.title}>{product?.weight}</Text>
+      <Text style={styles.title}>${product?.price}</Text>
+      <Button title="Add to cart" onPress={onAddToCart} color={THEME.colors.primary} />
     </View>
   );
 };
